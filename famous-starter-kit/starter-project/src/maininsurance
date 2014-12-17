@@ -1,0 +1,331 @@
+//   /*global famous*/
+// // import dependencies
+// define(function(require, exports, module) {
+	
+// 	var Engine = require('famous/core/Engine');
+// 	var Modifier = require('famous/core/Modifier');
+// 	var Transform = require('famous/core/Transform');
+// 	var ImageSurface = require('famous/surfaces/ImageSurface');
+// 	var Surface = require('famous/core/Surface');
+// 	var Transitionable = require('famous/transitions/Transitionable');
+// 	var AppView = require('AppView');
+
+// 	// create the main context
+// 	var mainContext = Engine.createContext();
+// 	var initialTime = Date.now();
+
+// 	// THE SUN
+// 	var logo = new ImageSurface({
+// 	    size: [200, 200],
+// 	    content: 'http://code.famo.us/assets/famous_logo.png',
+// 	    classes: ['double-sided'],
+// 	    properties: {
+// 	    	backgroundColor: '#ffeb7f',
+// 	    	borderRadius: '100px'
+// 	    }
+// 	});
+
+// 	var centerSpinModifier = new Modifier({
+// 	    origin: [0.5, 0.5],
+// 	    align: [0.5, 0.5],
+// 	    transform : function () {
+// 	        return Transform.rotateZ(.002 * (Date.now() - initialTime));
+// 	    }
+// 	});
+
+// 	var logoZModifier = new Modifier({
+// 	    transform : function () {
+// 	        return Transform.translate(0,0,1000);
+// 	    }
+// 	});
+
+// 	// MERCURY
+
+// 	var mercury = new ImageSurface({
+// 	    size: [35, 35],
+// 	    content: 'http://code.famo.us/assets/famous_logo.png',
+// 	    classes: ['double-sided'],
+// 	    properties: {
+// 	    	backgroundColor: 'papayawhip',
+// 	    	borderRadius: '100px'
+// 	    }
+// 	});
+
+// 	var mercuryOrbitTiltModifier = new Modifier({
+// 		transform: function () {
+// 			return Transform.rotateX(Math.PI/12);
+// 		}
+// 	});
+	
+// 	var mercuryOrbitSpeedModifier = new Modifier({
+// 	    align: [0.5, 0.5],
+// 	    transform : function () {
+// 	        return Transform.rotateY(.0045 * (Date.now() - initialTime));
+// 	    }
+// 	});
+	
+// 	var mercuryRoundnessModifier = new Modifier({
+// 	    transform : function () {
+// 	       return Transform.rotateY(-(.0045 * (Date.now() - initialTime)));
+// 	    }
+// 	});
+
+// 	var mercuryAxisModifier = new Modifier({
+// 	    transform : function () {
+// 	       return Transform.rotateZ(Math.PI/6);
+// 	    }
+// 	});
+
+// 	var mercuryOrbitModifier = new Modifier({
+// 	    transform : function () {
+// 	        return Transform.translate(0, 0, 175);
+// 	    }
+// 	});
+
+// 	//VENUS
+
+// 	var venus = new ImageSurface({
+// 	    size: [50, 50],
+// 	    content: 'http://code.famo.us/assets/famous_logo.png',
+// 	    classes: ['double-sided'],
+// 	    properties: {
+// 	    	backgroundColor: 'palegoldenrod',
+// 	    	borderRadius: '100px'
+// 	    }
+// 	});
+
+// 	var venusOrbitTiltModifier = new Modifier({
+// 		transform: function () {
+// 			return Transform.rotateX(-Math.PI/8);
+// 		}
+// 	});
+
+// 	var venusAxisModifier = new Modifier({
+// 	    transform : function () {
+// 	       return Transform.rotateZ(Math.PI/-8);
+// 	    }
+// 	});
+
+// 	var venusOrbitSpeedModifier = new Modifier({
+// 	    align: [0.5, 0.5],
+// 	    transform : function () {
+// 	        return Transform.rotateY(.004 * (Date.now() - initialTime));
+// 	    }
+// 	});
+
+// 	var venusRoundnessModifier = new Modifier({
+// 	    transform : function () {
+// 	       return Transform.rotateY(-(.004 * (Date.now() - initialTime)));
+// 	    }
+// 	});
+
+// 	var venusOrbitModifier = new Modifier({
+// 	    transform : function () {
+// 	        return Transform.translate(0, 0, 300);
+// 	    }
+// 	});
+
+// 	//EARTH
+
+// 	var earth = new ImageSurface({
+// 	    size: [53, 53],
+// 	    content: 'http://code.famo.us/assets/famous_logo.png',
+// 	    classes: ['double-sided'],
+// 	    properties: {
+// 	    	backgroundColor: 'cyan',
+// 	    	borderRadius: '100px'
+// 	    }
+// 	});
+
+// 	var earthOrbitTiltModifier = new Modifier({
+// 		transform: function () {
+// 			return Transform.rotateX(Math.PI/20);
+// 		}
+// 	});
+
+// 	var earthOrbitSpeedModifier = new Modifier({
+// 	    align: [0.5, 0.5],
+// 	    transform : function () {
+// 	        return Transform.rotateY(.0027 * (Date.now() - initialTime));
+// 	    }
+// 	});
+
+// 	var earthAxisModifier = new Modifier({
+// 	    transform : function () {
+// 	       return Transform.rotateZ(Math.PI/9);
+// 	    }
+// 	});
+
+// 	var earthRoundnessModifier = new Modifier({
+// 	    transform : function () {
+// 	       return Transform.rotateY(-(.0027 * (Date.now() - initialTime)));
+// 	    }
+// 	});
+
+// 	var earthOrbitModifier = new Modifier({
+// 	    transform : function () {
+// 	        return Transform.translate(0, 0, 350);
+// 	    }
+// 	});
+
+
+// 	//MARS
+
+// 	var mars = new ImageSurface({
+// 	    size: [30, 30],
+// 	    content: 'http://code.famo.us/assets/famous_logo.png',
+// 	    classes: ['double-sided'],
+// 	    properties: {
+// 	    	backgroundColor: 'red',
+// 	    	borderRadius: '100px'
+// 	    }
+// 	});
+
+// 	var marsOrbitTiltModifier = new Modifier({
+// 		transform: function () {
+// 			return Transform.rotateX(-Math.PI/18);
+// 		}
+// 	});
+
+// 	var marsOrbitSpeedModifier = new Modifier({
+// 	    align: [0.5, 0.5],
+// 	    transform : function () {
+// 	        return Transform.rotateY(.0018 * (Date.now() - initialTime));
+// 	    }
+// 	});
+
+// 	var marsRoundnessModifier = new Modifier({
+// 	    transform : function () {
+// 	       return Transform.rotateY(-(.0018 * (Date.now() - initialTime)));
+// 	    }
+// 	});
+
+// 	var marsAxisModifier = new Modifier({
+// 	    transform : function () {
+// 	       return Transform.rotateZ(Math.PI/-7);
+// 	    }
+// 	});
+
+
+// 	var marsOrbitModifier = new Modifier({
+// 	    transform : function () {
+// 	        return Transform.translate(0, 0, 385);
+// 	    }
+// 	});
+
+// 	//JUPITER
+
+// 	var jupiter = new ImageSurface({
+// 	    size: [70, 70],
+// 	    content: 'http://code.famo.us/assets/famous_logo.png',
+// 	    classes: ['double-sided'],
+// 	    properties: {
+// 	    	backgroundColor: 'darkorange',
+// 	    	borderRadius: '100px'
+// 	    }
+// 	});
+
+// 	var jupiterOrbitTiltModifier = new Modifier({
+// 		transform: function () {
+// 			return Transform.rotateX(Math.PI/20);
+// 		}
+// 	});
+
+// 	var jupiterOrbitSpeedModifier = new Modifier({
+// 	    align: [0.5, 0.5],
+// 	    transform : function () {
+// 	        return Transform.rotateY(.0014 * (Date.now() - initialTime));
+// 	    }
+// 	});
+
+// 	var jupiterAxisModifier = new Modifier({
+// 	    transform : function () {
+// 	       return Transform.rotateZ(Math.PI/6);
+// 	    }
+// 	});
+
+// 	var jupiterRoundnessModifier = new Modifier({
+// 	    transform : function () {
+// 	       return Transform.rotateY(-(.0014 * (Date.now() - initialTime)));
+// 	    }
+// 	});
+
+// 	var jupiterOrbitModifier = new Modifier({
+// 	    transform : function () {
+// 	        return Transform.translate(0, 0, 420)
+// 	    }
+// 	});
+
+// 	// NEBULA
+// 	var nebulaModifier = new Modifier({
+// 		transform : function () {
+// 			return Transform.translate(0, 0, 3)
+// 		}
+// 	});
+
+// 	var shinyStar = new Surface({
+// 		size: [25,25],
+// 		properties: {
+// 			backgroundImage: 'url(http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=10857659)',
+// 			backgroundRepeat: 'no-repeat'
+// 		}
+// 	});
+
+// 	var moveShinyXaLil = new Modifier({
+// 		transform : function () {
+// 			return Transform.translate(50, 0, 0)
+// 		}
+// 	});
+
+// 	var moveShinyXaLot = new Modifier({
+// 		transform : function () {
+// 			return Transform.translate(300, 0, 0);
+// 		}
+// 	});
+
+// 	var moveShinyYaLil = new Modifier({
+// 		transform : function () {
+// 			return Transform.translate(0, 50, 0);
+// 		}
+// 	});
+
+// 	var moveShinyYaLot = new Modifier({
+// 		transform : function () {
+// 			return Transform.translate(0, 300, 0);
+// 		}
+// 	});
+
+
+
+// 	// View Instance
+
+// 	var appView = new AppView();
+
+// 	var background = new Surface({
+//         size:[undefined, undefined],
+//         properties: {
+//             backgroundImage: 'url(http://yda.fc2web.com/hoshi/M31ed.jpg)',
+//             backgroundRepeat: 'no-repeat'
+
+//         }
+//     });
+
+// 	// Throw some shiznatch together
+
+// 	mainContext.add(appView);
+// 	mainContext.setPerspective(2500);
+//     appView.add(background);
+
+//     var system = appView.add(logoZModifier);
+//     system.add(centerSpinModifier).add(logo);
+//     system.add(mercuryOrbitTiltModifier).add(mercuryAxisModifier).add(mercuryOrbitSpeedModifier).add(mercuryOrbitModifier).add(mercuryRoundnessModifier).add(mercury);
+//   	system.add(venusOrbitTiltModifier).add(venusAxisModifier).add(venusOrbitSpeedModifier).add(venusOrbitModifier).add(venusRoundnessModifier).add(venus);
+//   	system.add(earthOrbitTiltModifier).add(earthAxisModifier).add(earthOrbitSpeedModifier).add(earthOrbitModifier).add(earthRoundnessModifier).add(earth);
+//   	system.add(marsOrbitTiltModifier).add(marsAxisModifier).add(marsOrbitSpeedModifier).add(marsOrbitModifier).add(marsRoundnessModifier).add(mars);
+//   	system.add(jupiterOrbitTiltModifier).add(jupiterAxisModifier).add(jupiterOrbitSpeedModifier).add(jupiterOrbitModifier).add(jupiterRoundnessModifier).add(jupiter);
+
+//   	var nebula = appView.add(nebulaModifier);
+//   	nebula.add(moveShinyYaLot).add(moveShinyYaLot).add(moveShinyXaLil).add(moveShinyXaLil).add(shinyStar);
+//   	nebula.add(moveShinyXaLot).add(moveShinyXaLil).add(moveShinyXaLil).add(moveShinyYaLil).add(shinyStar);
+
+// });
