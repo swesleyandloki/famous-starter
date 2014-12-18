@@ -35,9 +35,9 @@ define(function(require, exports, module) {
 
         var size = (Math.random() * 50 + 20);
 
-        var r = Math.floor(Math.random() * 255);
-        var g = Math.floor(Math.random() * 255);
-        var b = Math.floor(Math.random() * 255);
+        var r = Math.floor(100 + Math.random() * 155);
+        var g = Math.floor(74 + Math.random() * 181);
+        var b = Math.floor(88 Math.random() * 167);
 
 
         var planet = new ImageSurface({
@@ -52,7 +52,7 @@ define(function(require, exports, module) {
 
         var factor = Math.random();
 
-        var speedFactor = Math.floor(Math.random()*10+15) * .0001;
+        var speedFactor = Math.floor(Math.random()*35-20) * .0001;
 
         var planetOrbitTiltModifier = new Modifier({
             transform: function () {
@@ -73,7 +73,7 @@ define(function(require, exports, module) {
             }
         });
 
-        var rando = Math.random();
+        var rando = Math.random()-1;
         var planetAxisModifier = new Modifier({
             transform : function () {
                return Transform.rotateZ(Math.PI*rando/2);

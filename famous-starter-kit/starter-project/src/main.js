@@ -85,7 +85,6 @@ define(function(require, exports, module) {
 
     var system = appView.add(logoZModifier);
     system.add(centerSpinModifier).add(logo);
-    system.add(deploy).add(raider);
     
   	logo.on('click', function(){
   		var planetView = new PlanetView();
