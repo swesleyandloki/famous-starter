@@ -14,6 +14,7 @@ define(function(require, exports, module) {
 	var EarthView = require('EarthView');
 	var MarsView = require('MarsView');
 	var JupiterView = require('JupiterView');
+	var PlanetView = require('PlanetView');
 
 	// create the main context
 	var mainContext = Engine.createContext();
@@ -124,6 +125,9 @@ define(function(require, exports, module) {
   	logo.on('click', function(){
   		if(planetArray.length>0){
   			return system.add(planetArray.pop());
+  		}else{
+  			var planetView = new PlanetView();
+  			system.add(planetView);
   		}
   	});
   	
