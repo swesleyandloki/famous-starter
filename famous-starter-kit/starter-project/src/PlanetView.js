@@ -35,13 +35,17 @@ define(function(require, exports, module) {
 
         var size = (Math.random() * 50 + 20);
 
-        var colors = ['papayawhip','palegoldenrod','cyan','red','darkorange'];
+        var r = Math.floor(Math.random() * 255);
+        var g = Math.floor(Math.random() * 255);
+        var b = Math.floor(Math.random() * 255);
+
+
         var planet = new ImageSurface({
             size: [size,size],
             content: 'http://code.famo.us/assets/famous_logo.png',
             classes: ['double-sided'],
             properties: {
-                backgroundColor: colors[Math.floor(Math.random() * colors.length)],
+                backgroundColor: 'rgb('+r+','+g+','+b+')',
                 borderRadius: '100px'
             }
         });
@@ -72,7 +76,7 @@ define(function(require, exports, module) {
         var rando = Math.random();
         var planetAxisModifier = new Modifier({
             transform : function () {
-               return Transform.rotateZ(Math.PI*rando);
+               return Transform.rotateZ(Math.PI*rando/2);
             }
         });
 

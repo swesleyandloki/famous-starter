@@ -54,19 +54,6 @@ define(function(require, exports, module) {
 	});
 
 
-	var shinyStar = new Surface({
-		size: [25,25],
-		properties: {
-			backgroundImage: 'url(http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=10857659)',
-			backgroundRepeat: 'no-repeat'
-		}
-	})
-	var moveShinyXaLil =  new  Modifier({
-		transform : function () {
-			return Transform.translate(50, 0, 0)
-		}
-	});
-
 
 	// View Instances
 
@@ -81,36 +68,14 @@ define(function(require, exports, module) {
         }
     });
 
-    var raider = new ImageSurface({
-    	size: [100,100],
-    	content: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTAuvFXQxD6bPZOFam2tm406duWB6foVu5mma436AaH80Pwicol',
-    	properties: {
-    		backgroundRepeat: 'no-repeat',
-    		height: '10%',
-    		width: '10%'
-    	}
-    });
 
-    var cylon = new Modifier({
-    	transform: function() {
-        	return Transform.translate(window.innerWidth, window.innerHeight, 3), {duration: 1000};
-    	}
-	});
+    // var planetMercury = new MercuryView();
+    // var planetVenus = new VenusView();
+    // var planetEarth = new EarthView();
+    // var planetMars = new MarsView();
+    // var planetJupiter = new JupiterView();
 
-	var deploy = new Modifier({
-		transform: function() {
-			return Transform.rotateZ(Math.PI/2)
-		}
-	})
-
-
-    var planetMercury = new MercuryView();
-    var planetVenus = new VenusView();
-    var planetEarth = new EarthView();
-    var planetMars = new MarsView();
-    var planetJupiter = new JupiterView();
-
-    var planetArray = [planetJupiter, planetMars, planetEarth, planetVenus, planetMercury];
+    // var planetArray = [planetJupiter, planetMars, planetEarth, planetVenus, planetMercury];
 
 	// Throw some shiznatch together
 
@@ -123,12 +88,8 @@ define(function(require, exports, module) {
     system.add(deploy).add(raider);
     
   	logo.on('click', function(){
-  		if(planetArray.length>0){
-  			return system.add(planetArray.pop());
-  		}else{
-  			var planetView = new PlanetView();
-  			system.add(planetView);
-  		}
+  		var planetView = new PlanetView();
+  		system.add(planetView);
   	});
   	
   	
